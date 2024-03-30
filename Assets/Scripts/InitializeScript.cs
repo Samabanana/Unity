@@ -17,7 +17,6 @@ public class InitializeScript : MonoBehaviour
         gameBoard = new GameObject[5,5];
         float widthIncrement = Screen.width / 5;
         float lengthIncrement = Screen.height / 5;
-        Debug.Log(Screen.width);
         player.transform.position = new Vector3(0,0,0);
 
         int row = 0;
@@ -38,28 +37,55 @@ public class InitializeScript : MonoBehaviour
         row = 0;
         column = 0;
 
-        Instantiate(player, gameBoard[row, column].transform.position, Quaternion.identity);
+        Instantiate(player, gameBoard[column, row].transform.position, Quaternion.identity);
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
         // Move the player
-        if(Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            Debug.Log("Went up");
-        } 
-        else if(Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            Debug.Log("Went down");
-        } 
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            Debug.Log("Went left");
-        } 
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            Debug.Log("Went right");
+        //This movement is assuming player starts at 0,0
+            if(Input.GetKeyDown(KeyCode.UpArrow) && !OutofBounds(row + 1,column))
+            {
+                row++;
+                player.transform.position = gameBoard[column, row].transform.position;
+            } 
+            else if(Input.GetKeyDown(KeyCode.DownArrow) && !OutofBounds(row - 1,column))
+            {
+                row--;
+                player.transform.position = gameBoard[column, row].transform.position;
+            } 
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) && !OutofBounds(row,column - 1))
+            {
+                column--;
+                player.transform.position = gameBoard[column, row].transform.position;
+            } 
+            else if (Input.GetKeyDown(KeyCode.RightArrow) && !OutofBounds(row,column + 1))
+            {
+                column++;
+                player.transform.position = gameBoard[column, row].transform.position;
+            }
+
+    }
+
+    private bool OutofBounds(int columnCheck, int rowCheck) {
+
+
+        int rowBound = gameBoard.GetLength(0);
+        int columnBound = gameBoard.GetLength(1);
+
+        //If the index goes negative, don't move
+        if(rowCheck < 0 || columnCheck < 0) {
+            return true;
         }
+
+        //If the index is more than the length/row of the board, don't move
+        if(rowCheck == rowBound || columnCheck == columnBound) {
+            return true;
+        }
+
+        return false;
+
     }
 }
