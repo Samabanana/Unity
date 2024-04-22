@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy 
+public class Enemy : MonoBehaviour
 {
-    public float health;
+     public float health;
     public float damage;
     public float speed;
     public bool elite;
@@ -15,11 +15,7 @@ public class Enemy
         speed = Random.value * 2;
         damage = Random.value * 2;
         health = 10;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("You encounter an enemy! It has " + health + " health, " + speed + " speed, and " + damage + " damage");
     }
 }

@@ -10,10 +10,11 @@ public class InitializeScript : MonoBehaviour
     public int row;
     public int column;
     private Player playerCont;
+    public bool occupied; //The player can only move if the player is not occupied by a battle or some menu.
     // Start is called before the first frame update
     void Start()
     {
-        
+        occupied = false;
         gameBoard = new GameObject[5,5];
         float widthIncrement = Screen.width / 5;
         float lengthIncrement = Screen.height / 5;
@@ -27,6 +28,7 @@ public class InitializeScript : MonoBehaviour
             while (column < 5) {
                 //For each row, instantiate the columns
                 gameBoard[row,column] = Instantiate(dungeonTile, new Vector3(5 + (row * 2), 5 + (column * 2), 0), Quaternion.identity);
+                //Have to give each room an event
                 column++;
             }
             row++;
@@ -69,7 +71,7 @@ public class InitializeScript : MonoBehaviour
 
     }
 
-    private bool OutofBounds(int columnCheck, int rowCheck) {
+    public bool OutofBounds(int columnCheck, int rowCheck) {
 
 
         int rowBound = gameBoard.GetLength(0);
