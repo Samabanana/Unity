@@ -285,7 +285,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 9, y: 9, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -626,6 +626,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 4610150266613978808, guid: c490ef59cfd9ba842888a75040062bb4, type: 3}
   dungeonTile: {fileID: 6100947253183959061, guid: da3891a16f3550346ae3a6dd6141ef27, type: 3}
+  row: 0
+  column: 0
 --- !u!4 &1802011316
 Transform:
   m_ObjectHideFlags: 0
